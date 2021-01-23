@@ -1,40 +1,64 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET posts index /posts */
+/* GET Home page */
 router.get('/', (req, res, next) => {
   res.send('/posts');
 });
 
-/* GET posts new /posts/new */
-router.get('/new', (req, res, next) => {
-    res.send('/posts/new');
+/* GET /register */
+router.get('/register', (req, res, next) => {
+    res.send('GET /register');
   });
-  
-/* POST  posts create /posts */
-router.post('/', (req, res, next) =>{ 
-    res.send('CREATE /posts');
+
+/* POST /register */
+router.post('/register', (req, res, next) => {
+  res.send('GET /register');
 });
 
-/* GET  posts show /posts/:id */
-router.get('/:id', (req,res, next) => {
-    res.send('SHOW /posts/:id');
+
+/* GET /login */
+router.get('/login', (req, res, next) => {
+  res.send('GET /login');
 });
 
-/* GET posts Edit /posts/id/edit */
-router.get('/:id/edit', (req, res, next) =>{
-    res.send('EDIT /posts/:id/edit');
+/* POST /login */
+router.post('/login', (req, res, next) => {
+  res.send('GET /login');
 });
 
-/* PUT posts update /posts/:id */
-router.put('/:id', (req, res, next)=>{
-    res.send('UPDATE /posts/:id');
+/* GET /Profile */
+router.get('/profile', (req, res, next) => {
+  res.send('GET /profile');
 });
 
-/* Destroy  posts /posts/:id*/
-router.delete('/:id', (req, res, next) =>{
-    res.send('DESTROY /posts/:id');
+/* Put /profile/:user_id */
+router.put('/profile/:user_id', (req, res, next) => {
+  res.send('GET /profile/:user_id');
 });
+
+/* GET /forgot-pw */
+router.get('/forgot', (req, res, next) => {
+  res.send('GET /forgot-pw');
+});
+
+/* PUT /forgot-pw */
+router.put('/forgot', (req, res, next) => {
+  res.send('PUT /forgot-pw');
+});
+
+
+/* GET /reset-password */
+router.get('/reset/:token', (req, res, next) => {
+  res.send('GET /reset-pw/:token');
+});
+
+/* PUT /reset-password */
+router.put('/reset/:token', (req, res, next) => {
+  res.send('PUT /reset-pw/:token');
+});
+
+
 
 
 module.exports = router;
