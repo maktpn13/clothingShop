@@ -1,42 +1,42 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/* GET posts index /posts */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Clothing Shop - Home' });
+  res.send('/posts');
+});
+
+/* GET posts new /posts/new */
+router.get('/new', (req, res, next) => {
+    res.send('/posts/new');
+  });
+  
+/* POST  posts create /posts */
+router.post('/', (req, res, next) =>{ 
+    res.send('CREATE /posts');
+});
+
+/* GET  posts show /posts/:id */
+router.get('/:id', (req,res, next) => {
+    res.send('SHOW /posts/:id');
+});
+
+/* GET posts Edit /posts/id/edit */
+router.get('/:id/edit', (req, res, next) =>{
+    res.send('EDIT /posts/:id/edit');
+});
+
+/* PUT posts update /posts/:id */
+router.put('/:id', (req, res, next)=>{
+    res.send('UPDATE /posts/:id');
+});
+
+/* Destroy  posts /posts/:id*/
+router.delete('/:id', (req, res, next) =>{
+    res.send('DESTROY /posts/:id');
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
+
+
