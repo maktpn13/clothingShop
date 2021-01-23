@@ -48,12 +48,12 @@ router.put('/forgot', (req, res, next) => {
 });
 
 
-/* GET /reset-password */
+/* GET /reset-pw/:token */
 router.get('/reset/:token', (req, res, next) => {
   res.send('GET /reset-pw/:token');
 });
 
-/* PUT /reset-password */
+/* PUT /reset-pw/:token */
 router.put('/reset/:token', (req, res, next) => {
   res.send('PUT /reset-pw/:token');
 });

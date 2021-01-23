@@ -4,10 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser')
+const passport = require('passport');
+const User = require('./models/user');
 
+
+//Require Routes 
 const indexRouter = require('./routes/index');
 const reviewsRouter = require('./routes/reviews');
 const postsRouter = require('./routes/posts');
+
 
 const app = express();
 
@@ -23,8 +28,21 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+//Configure Passport  and sessions
+app.use(session({
+  secret: 'keyboard Kings',
+  resave: false,
+  saveUninitialized: true
+}));
+// CHANGE: USE "createStrategy" INSTEAD OF "authenticate"
+passport.use(User.createStrategy());
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+//Mount Routes
+app.use('/', indexRouter);
 app.use('/posts/:id/reviews', reviewsRouter);
 app.use('/posts', postsRouter);
 
