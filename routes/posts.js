@@ -1,25 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const { errorHandler} = require('../middleware');
+const { 
+    postGet, 
+    postNew, 
+    postCreate,
+    postShow
+} = require('../controllers/posts');
 
 /* GET posts index /posts */
-router.get('/', (req, res, next) => {
-  res.send('/posts');
-});
+router.get('/', errorHandler(postGet));
 
 /* GET posts new /posts/new */
-router.get('/new', (req, res, next) => {
-    res.send('/posts/new');
-  });
+router.get('/new', postNew);
   
 /* POST  posts create /posts */
-router.post('/', (req, res, next) =>{ 
-    res.send('CREATE /posts');
-});
+router.post('/', errorHandler(postCreate));
 
 /* GET  posts show /posts/:id */
-router.get('/:id', (req,res, next) => {
-    res.send('SHOW /posts/:id');
-});
+router.get('/:id', errorHandler(postShow));
 
 /* GET posts Edit /posts/id/edit */
 router.get('/:id/edit', (req, res, next) =>{
