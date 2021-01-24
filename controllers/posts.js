@@ -2,7 +2,7 @@ const Post = require('../models/post');
 
 module.exports = {
     // Post Index
-    async postGet(req, res , next) {
+    async postIndex(req, res , next) {
         let posts = await Post.find({});
         res.render('posts/index', {posts});
     },
@@ -14,13 +14,25 @@ module.exports = {
     // Posts Create
    async postCreate (req, res, next) {
        // user req.body to create a new Post
-       let post = await Post.create(req.body);
-    res.redirect(`/posts/${post.id}`);
+       let post = await Post.create(req.body.post);
+    res.redirect(`/posts/${post.id}`);  
     },
 
     // Posts Show 
     async postShow (req, res, next){
       let post = await Post.findById(req.params.id);
         res.render('posts/show', {post});
-    }
+    },
+
+    //Posts Edit
+    async postEdit(req, res, next){
+        let post = await Post.findById(req.params.id);
+        res.render('posts/edit', {post});
+    },
+
+    //Post Update
+    async postUpdate(req, res, next){
+        let post = await Post.findByIdAndUpdate(req.params.id, req.body.post, {new: true});
+        res.redirect(`/posts/${post.id}`);   
+     }
 }

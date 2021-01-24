@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport')
 const { postRegister } = require('../controllers');
-const { errorHandler } = require('../middleware')
+const { ayncErrorHandler } = require('../middleware')
 
 /* GET /register */
 router.get('/', (req, res, next) => {
@@ -17,7 +17,7 @@ router.get('/register', (req, res, next) => {
   });
 
 /* POST /register */
-router.post('/register', errorHandler(postRegister));
+router.post('/register', ayncErrorHandler(postRegister));
 
 /* GET /login */
 router.get('/login', (req, res, next) => {

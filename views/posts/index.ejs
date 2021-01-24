@@ -8,29 +8,49 @@
     <title>Document</title>
 </head>
 <body>
-            <div class="container center">
+            <div class="container text-center ">
                 <div class="jumbotron">
-                  <h1 class="display-4 text-center">Welcome to Mktpn POST INDEX</h1>
-                  <p class="lead text-center"></p>
+                  <h1 class="display-4 text-center"></h1>
                   <hr class="my-4">
+                  <a href="/posts/new " class="btn btn-info  btn-lg">Create New Item</a>
             </div>  
-            <div class="card-columns ">
 
-                 <%posts.forEach(function(post){%>
-                <div class="card text-center">
-                  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                  <div class="card-body">
-                    <h5 class="card-title">
-                        <%=post.title%></h5>
-                    <p class="card-text"><%=post.price %></p>
-                    <p class="card-text"><%=post.description%></p>
-                    <p class="card-text"><%=post.location%></p>
-                  </div>
-                </div>
+       
+            <table class="table table-bordered text-center table-sm">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Item</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Qty</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%posts.forEach(function(post){%>
+                <tr>
+                  <th scope="row"><%=post.title%></th> 
+                  <td><%=post.price %></td>
+                  <td><%=post.qty%></td>
+                  <td><%=post.description%></td>
+                  <td><%=post.location%></td>
+                  <td><a href="/posts/<%=post.id%> " class="btn btn-primary">View More</a></td>
+                </tr>
+              </tbody>                
+              <% });%>
+            </table>
 
-    <% });%>
-            </div>
-        
+
+</div>
+
+
+
+
+
+
+
+           
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -38,6 +58,3 @@
     <script src="https://maxcdn.
 </body>
 </html>             
-
-
-

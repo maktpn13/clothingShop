@@ -8,45 +8,53 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container center">
-        <div class="jumbotron">
-          <h1 class="display-4 text-center">Welcome to Mktpn POST NEW</h1>
-          <p class="lead text-center"></p>
-          <hr class="my-4">
-        </div>  
-
-        <form action="/posts" method="POST">
-        <div class="container center">
-              <div class="form-group">
-                <label for="title">Product Item</label>
-                <input type="text" class="form-control" id="title" name="title" aria-describedby="title" placeholder="Enter Product">
-              </div>
-
-              <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price">
-              </div>
-
-              <div class="form-group">
-                <label for="Description">Description</label>
-                <textarea class="form-control" id="Description" name="description" rows="3" placeholder="Enter Description"></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location" aria-describedby="location" placeholder="Enter Location">
-                <small id="location" class="form-text text-muted">We'll never share your location with anyone else.</small>
-              </div>
-    
-               <div class="lead">
-              <div class="col text-center ">
-              <button type="submit" class="btn btn-primary" role="alert">Submit</button>
+        <br>    
+        <br>   
+        <br>   
+        <br>    
+    <div class="container">
+        <div class="card text-center bg-warning">
+            <div class="card-header">
+              Add New Item
             </div>
-         </div>
-    </form>
-  
-     
-      
+        </div>
+            <div class="card-body">
+                <form action="/posts" method="POST">
+
+                   
+                    <div class="form-group">
+                      <label for="title">Product Name</label>
+                      <input type="text" class="form-control" id="title" name="post[title]" aria-describedby="emailHelp" placeholder="Enter Product Name">
+           
+                    </div>
+                    <div class="form-group">
+                      <label for="price">Price</label>
+                      <input type="text" class="form-control" name="post[price]" id="price" placeholder="Enter Price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qty">Quantity</label>
+                        <input type="text" class="form-control" id="qty" name="post[qty]" placeholder="Enter Quantity">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="images" class="form-label">Upload Photos Item</label>
+                        <input class="form-control" type="file" id="images" multiple>
+                      </div>
+
+                    <div class="form-group ">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="post[description]" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" class="form-control" id="location" name="post[location]" placeholder="Enter Location">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
