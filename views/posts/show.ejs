@@ -26,10 +26,12 @@
           <div class="card mb-3">
             <div class="row g-0">
               <div class="col-md-4">
-                <% post.images.forEach(function(image){ %>
-                  <img src="<%=image.url %> " alt="ClothingShopPhotos" width="150px">
-                  <% });%>
-              </div>
+                <div class="card-body">
+                  <% post.images.forEach(function(image){ %>
+                    <img src="<%=image.url %> " alt="ClothingShopPhotos" width="140px"  class="img-thumbnail">
+                    <% });%>
+                </div>
+                </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title text-left"><b><%=post.title%></b></h5>

@@ -20,9 +20,7 @@
             </div>
         </div>
             <div class="card-body">
-        <form action="/posts/<%=post.id%>?_method=PUT" method="POST">
-
-
+        <form action="/posts/<%=post.id%>?_method=PUT" method="POST" id="postEditForm" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="title">Product Name</label>
                       <input type="text" class="form-control" id="title" name="post[title]" value="<%=post.title %>" aria-describedby="emailHelp" placeholder="Enter Product Name">
@@ -33,14 +31,21 @@
                       <input type="text" class="form-control" name="post[price]" value="<%=post.price%>" id="price" placeholder="Enter Price">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group">  
                         <label for="qty">Quantity</label>
                         <input type="text" class="form-control" id="qty" value="<%=post.qty%>" name="post[qty]" placeholder="Enter Quantity">
                     </div>
 
                     <div class="form-group">
                       <label for="images" class="form-label">Upload Photos Item</label>
-                      <input class="form-control" type="file" id="images" multiple>
+                      <input class="form-control" type="file" accept="images/*" name="images" id="imageUpload" multiple>
+                        <div class="card-body">
+                          <% post.images.forEach(function(image, i){ %>
+                            <img src="<%=image.url%>" alt="ClothingShopPhotos" width="150px" class="img-thumbnail">
+                            <input class="form-check-input imageDeleteCheckbox" name="deleteImages[]" type="checkbox" value="<%=image.public_id%>" id="image<%=i%>"">
+                            <label class="form-check-label" for="image<%= i%>"></label>
+                            <% });%>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -60,10 +65,36 @@
             </div>
     </div>
 
-    <!-- Optional JavaScript -->
+       <!-- Optional JavaScript -->
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+      //find post edit form
+      let postEditForm = document.getElementById('postEditForm');
+      //add submit listener to post edit form
+      postEditForm.addEventListener('submit',function(event){
+      //find length of uploaded images
+      let imageUpload = document.getElementById('imageUpload').files.length;
+      // File total number of existing images
+      let existingImgs = document.querySelectorAll('.imageDeleteCheckbox').length;
+      // find total number of potential deletions
+      let deleteImgs = document.querySelectorAll('.imageDeleteCheckbox:checked').length;
+      
+      //figure out if the form can be submitted or not
+        let newTotal = existingImgs - deleteImgs + imageUpload;
+      if(newTotal > 4){
+        event.preventDefault();
+        let removalAmt = newTotal - 4;
+        alert(`You need to remove at least ${removalAmt} (more) image${removalAmt === 1 ? '':'s'}!`);
+      }
+
+      });
+     
+
+
+    </script>   
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
