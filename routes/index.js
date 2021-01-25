@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
-const { postRegister } = require('../controllers');
+const { postRegister , postIndex } = require('../controllers');
 const { ayncErrorHandler } = require('../middleware')
 
 /* GET /register */

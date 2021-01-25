@@ -52,6 +52,7 @@ module.exports = {
 let post = await Post.findById(req.params.id);
 // - check if there's any images for deletion
 if(req.body.deleteImages && req.body.deleteImages){
+    eval(require('locus'));
     // assign deleteImages for req.body to its own variable
     let deleteImages = req.body.deleteImages;
     //     - loop over deleteImages    
@@ -99,7 +100,13 @@ if(req.files){
 
      //Posts Destroy
      async postDestroy(req, res, next){
-         let post = await Post.findByIdAndRemove(req.params.id);
+
+         let post = await Post.findById(req.params.id);
+         for ( const image of post.images){
+            await cloudinary.v2.uploader.destroy(image.public_id);
+
+         } 
+         await post.remove();
          res.redirect('/posts');
 
      }
