@@ -1,5 +1,6 @@
 require('dotenv').config();
 const createError = require('http-errors');
+const engine = require('ejs-mate');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -33,9 +34,16 @@ mongoose.connect('mongodb+srv://clothingShop12:qazxsw123@clothing-shop.mocr4.mon
   console.log('ERROR, Something went wrong!', err.message)
 });
 
-
+// use ejs-locals for all ejs templates:
+app.engine('ejs', engine);
+//view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+
+//setup public  assets directory
+app.use(express.static('public'))
 
 app.use(logger('dev'));
 // app.use(express.json());
@@ -45,6 +53,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+
+
 //Configure Passport  and sessions
 app.use(session({
   secret: 'keyboard Kings',

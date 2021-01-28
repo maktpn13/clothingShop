@@ -1,81 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
-    <title>Document</title>
-</head>
-<body>
+<% layout('layouts/post-show-layout') -%> 
 
-    <div class="container center">
-      <div class="jumbotron jumbotron-fluid">
+
+      <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-          <h1 class="display-4"></h1>
-          <p class="lead"></p>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="card text-center">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <div class="card-body">
+          
+          <h1 class="header center dark-text"><%=post.title%></h1>
+          <div class="row center">
+          </div>
+          <br>
+          <div class="row center">
+            <div class="col s4">
+              
+              <div class="slider">
+                <ul class="slides">
                   <% post.images.forEach(function(image){ %>
-                    <img src="<%=image.url %> " alt="ClothingShopPhotos" width="140px" class="img-thumbnail">
+                  <li>
+                    <img src="<%=image.url %> " alt="ClothingShopPhotos" width="150" >
                     <% });%>
-                </div>
-                </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title text-left"><b><%=post.title%></b></h5>
-                  <p class="card-text text-left "><b>Price:</b> <%=post.price%></p>
-                  <p class="card-text text-left"><b>Quantity: </b><%=post.qty%></p>
-                  <p class="card-text text-left"><b>Description:</b><br><%=post.description %></p>
-                  <p class="card-text text-left"><b>Location:</b> <%=post.location%></p>
-
-                  
-                    <form action="/posts/<%=post.id%>?_method=DELETE " method="POST" class=" text-left">
-                    
-                      <a href="/posts/<%=post.id%>/edit">
-                      <button type="button" class="btn btn-success">Edit Item </button>
-                    </a>
-                      <input class="btn btn-danger" type="submit" value="Delete Item">
-                      
-                      <a href="/posts/">
-                        <button type="button" class="btn btn-primary">Back</button>
-                      </a>
-                    </form>                
-                </div>
+                  </li>
+                 
+                </ul>
               </div>
             </div>
+            <div class="col s6">
+              <div class="card-content dark-text">
+             
+                <p class="left-align"><b>Price:</b> <%=post.price%></p>
+                <p class="left-align"><b>Quantity: </b><%=post.qty%></p>
+                <p class="left-align"><b>Description:</b>  <%=post.description %></h6>
+                <p class="left-align"><b>Location:</b> <%=post.location %></p>
+                <p class="left-align"><div id='map'></div></p>
+                <p class="left-align">
+                  <a href="/posts/<%=post.id%>/edit"><button type="button" class="waves-effect waves-light green darken-2 btn">Edit</button></a>
+                  <a href="/posts/"><button type="button" class="btn waves-effect waves-light red darken-3">Cancel</button></a>
+                </p>
+                <p class="left-align"></p>
+              </div>
           </div>
+         </div>
+            
+          </div>
+          <br><br>
+    
         </div>
       </div>
-    
-    </div>
- 
-
-
-     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <script>
-      var myCarousel = document.querySelector('#myCarousel')
-      var carousel = new bootstrap.Carousel(myCarousel);
-      </script>
-</body>
-</html>
 
 
 
-
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="/javascripts/materialize.js"></script>
+      <script src="/javascripts/init.js"></script>
+      </body>
+      </html>
+  
+      

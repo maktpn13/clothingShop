@@ -1,0 +1,24 @@
+.marker {
+  background-image: url("/images/mapbox-icon.png");
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 50px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+h3 {
+  font-size: 20px;
+}
+
+#map {
+  width: 800px;
+  height: 450px;
+}
